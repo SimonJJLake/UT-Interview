@@ -1,19 +1,19 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../services/fetchData";
+import { Grid } from "../components/Grid";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const App = () => {
   const { data } = useQuery({
     queryKey: ["videoData"],
     queryFn: fetchData,
   });
-  console.log(data);
+  if (!data) return <View />;
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Grid videos={data.videos} />
+    </SafeAreaView>
   );
 };
 
