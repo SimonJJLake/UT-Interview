@@ -14,7 +14,7 @@ export interface VideoImage {
   picture: string;
 }
 
-export interface Video {
+export interface VideoData {
   id: number;
   width: number;
   height: number;
@@ -32,7 +32,7 @@ export interface Video {
 export interface ApiData {
   page: number;
   per_page: number;
-  videos: Video[];
+  videos: VideoData[];
   total_results: number;
   next_page: string;
   url: string;
