@@ -13,13 +13,17 @@ const App = () => {
     queryFn: fetchData,
   });
   const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
-  console.log(selectedVideo);
+  const unselectedVideos = selectedVideo
+    ? data.videos.filter((video) => video.id !== selectedVideo.id).slice(0, 5)
+    : null;
+
   if (!data) return <View />;
   return (
     <SafeAreaView style={styles.container}>
       {selectedVideo ? (
         <VideoScreen
           video={selectedVideo}
+          videos={unselectedVideos}
           setSelectedVideo={setSelectedVideo}
         />
       ) : (
